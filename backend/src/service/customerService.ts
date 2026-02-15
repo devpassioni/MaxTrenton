@@ -3,7 +3,7 @@ import { Customer } from "../models/customer";
 
 export class CustomerService extends JsonRepository<Customer> {
     constructor() {
-        super("resources/data/customers.json");
+        super("backend/resources/data/customers.json");
     }
 
     async findAll(): Promise<Customer[]> {
