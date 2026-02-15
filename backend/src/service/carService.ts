@@ -1,4 +1,4 @@
-import {Car} from "../models/Car";
+import {Car} from "../models/car";
 
 export class CarService{
     constructor(
