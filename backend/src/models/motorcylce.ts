@@ -15,7 +15,7 @@ export class Motorcycle extends vehicle{
         public engineDisplacement: number,
         public bodyType: "Sport"|"Trail"|"Custom",
         public horsePower: number,
-    
+        
     
     ){
         super(id,brand,model,year,color,price,quilometers,status);

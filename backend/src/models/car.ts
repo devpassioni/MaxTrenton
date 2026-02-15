@@ -18,7 +18,7 @@ export class Car extends vehicle{
         public HorsePower: number,
     ){
         super(id,brand,model,year,color,price,quilometers,status);
-        
+        status = "Available";
     }
 
 public showDetails(id: number): string{
@@ -34,7 +34,26 @@ public showDetails(id: number): string{
         Class Type: ${this.type}
         HorsePower (HP): ${this.HorsePower}
         Available: ${this.status}`
+}                   
+
+public markAsSold(id: number){
+    this.status = 'Sold';
 }
 
+public markAsReserved(id:number){
+    this.status = "Reserved";
+}
+
+public isAvaiable(id:number): boolean{
+    if(this.status == "Available"){
+        return true
+    }else{
+        return false
+    }
+}
+
+public applyDiscount(percentage: 0.3|0.2|0.1|0.05): number{
+    return (this.price * percentage)
+}
 
 }
