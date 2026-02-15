@@ -69,8 +69,34 @@ public async updateMotorcyclePrice(id: number, newPrice: number): Promise<void>{
 }
 
 public async updateMotorcycleStatus(id: number, status: "Available" | "Sold" | "Reserved"): Promise<void>{
+    const motorcycle = await this.load()
+    const findIndex = motorcycle.find(moto => moto.id === id)
+    if(!findIndex){
+        throw new Error(`Error! Motocycle id ${id} not founded`)
+    }
     
+    if(status == "Reserved") findIndex.markAsSold
+    else if(status == "Sold") findIndex.markAsSold
+    else findIndex.status = "Available"
+    await this.save(motorcycle)
 }
 
+
+public async getCheapestMotorcycle(): Promise<Motorcycle>{
+    const motorcycle = await this.load()
+    const cheapest = motorcycle.reduce((cheapest,moto)=>  moto.price < cheapest.price ? moto : cheapest)
+    return cheapest
+}
+
+public async getMostExpensiveMotorcycle(): Promise<Motorcycle>{
+    const motorcycle = await this.load()
+    const highest = motorcycle.reduce((highest, moto)=> moto.price > highest.price ? moto : highest)
+    return highest
+}
+
+public async countAvailableMotorcycles(): Promise<Number>{
+    const motorcycle = await this.load()
+   return this.getAllAvaialableMotorcycle.length
+}
 
 }
