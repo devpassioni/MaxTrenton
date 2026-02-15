@@ -117,4 +117,22 @@ public getMostExpensiveCar(): Car {
     const value =  this.Cars.reduce((highest, car) => car.price > highest.price ? car : highest)
     return value    
 }
+
+public countAvailableCars(): number{
+    const availableCars = this.getAvaialableCars()
+
+    return this.getAvaialableCars.length
+}
+
+
+public savecars(){
+
+}
+public loadCars(){
+
+}
+
+
+
+
 }
