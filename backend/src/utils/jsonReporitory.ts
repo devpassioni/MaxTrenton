@@ -1,7 +1,7 @@
 import { readFile, writeFile } from "fs/promises";
 import path from "path";
 
-export abstract class JsonRepository<T> {
+export abstract class JsonRepository<T extends {id: number}> {
 
     protected filePath: string;
 
@@ -18,5 +18,18 @@ export abstract class JsonRepository<T> {
             this.filePath,
             JSON.stringify(items, null, 2),
         );
-}
+    }
+    public async update(id: number, updatedData: Partial<T>): Promise<T> {
+        const items = await this.load();
+        const index = items.findIndex(item => item.id === id);
+
+        if (index === -1) {
+            throw new Error(`Item with id ${id} not found`);
+        }
+
+        const updatedItem = { ...items[index], ...updatedData };
+        items[index] = updatedItem;
+        await this.save(items);
+        return updatedItem;
+    }
 }
