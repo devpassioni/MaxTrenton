@@ -76,12 +76,45 @@ public getCarsByPrice(min: number, max: number): Car[] | undefined{
 } 
 
 public updateCarPrice(id: number,newPrice: number){
-    const index = this.Cars.findIndex(cars => cars.id === id)
+    const car = this.Cars.find(cars => cars.id === id)
 
+    if(!car){
+        throw new Error(`${id} didn't match to our database.`)
+    }
     
-
+    return car.price = newPrice
     
 }
 
+public updateCarStatus(id: number, status: "Available" | "Sold" | "Reserved" ): void{
+    const car = this.Cars.find(car => car.id === id)
 
+    if(!car){
+         throw new Error(`${id} didn't match to our database.`)
+    }
+    if(status === "Sold") car.markAsSold()
+     else if(status == "Reserved") car.markAsReserved()
+    
+    else{
+        car.status = "Available";
+    }
+
+    
+
+}
+
+public getCheapestCar(): Car {
+    if(this.Cars.length === 0 ){
+        throw new Error("There`s no cars in the list")
+    }
+    return this.Cars.reduce((cheapest, car)=> car.price < cheapest.price ? car : cheapest)
+}
+
+public getMostExpensiveCar(): Car {
+    if(this.Cars.length === 0){
+        throw new Error("There`s no cars in the list!")
+    }
+    const value =  this.Cars.reduce((highest, car) => car.price > highest.price ? car : highest)
+    return value    
+}
 }

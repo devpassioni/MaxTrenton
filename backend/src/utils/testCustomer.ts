@@ -1,4 +1,4 @@
-import { Customer } from "./models/customer";
+import { Customer } from "../models/customer";
 
 const customer = new Customer(
     1,

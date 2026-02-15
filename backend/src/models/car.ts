@@ -36,11 +36,11 @@ public showDetails(id: number): string{
         Available: ${this.status}`
 }                   
 
-public markAsSold(id: number){
+public markAsSold(){
     this.status = 'Sold';
 }
 
-public markAsReserved(id:number){
+public markAsReserved(){
     this.status = "Reserved";
 }
 
@@ -53,7 +53,11 @@ public isAvaiable(id:number): boolean{
 }
 
 public applyDiscount(percentage: 0.3|0.2|0.1|0.05): number{
-    return (this.price * percentage)
+       const percentual =  (this.price * percentage)
+        const value = (this.price - percentual)
+        console.log(`Desconto aplicado de ${percentage}% Valor original: R$ ${this.price} para R$ ${value} `)
+        return value
 }
+
 
 }
