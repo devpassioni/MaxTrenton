@@ -1,14 +1,25 @@
+import {JsonRepository} from "../utils/jsonReporitory"
 import {Car} from "../models/car";
 
-export class CarService{
-    constructor(
-        private Cars: Car[] = [],
-    ){
-        
+export class CarService extends JsonRepository<Car>{
+    private Cars: Car[] = [];
+    constructor(){
+        super("resources/data/cars.json");
+        this.carregar();
+        this.sincronizar();
     }
+private async carregar(): Promise<void> {
+        this.Cars = await this.load();
+    }
+
+    private async sincronizar(): Promise<void> {
+        await this.save(this.Cars);
+    }
+
 
 public addCar(car: Car){
     this.Cars.push(car);
+    this.sincronizar()
 }
 
 public popCar(id:number){
@@ -17,7 +28,9 @@ public popCar(id:number){
     if(index === -1) return false
 
     this.Cars.splice(index,1);
+    this.sincronizar()
     return true
+    
 }
 
 public getCarById(id: number): Car | undefined {
@@ -99,8 +112,6 @@ public updateCarStatus(id: number, status: "Available" | "Sold" | "Reserved" ): 
         car.status = "Available";
     }
 
-    
-
 }
 
 public getCheapestCar(): Car {
@@ -119,20 +130,9 @@ public getMostExpensiveCar(): Car {
 }
 
 public countAvailableCars(): number{
-    const availableCars = this.getAvaialableCars()
-
+    
     return this.getAvaialableCars.length
 }
-
-
-public savecars(){
-
-}
-public loadCars(){
-
-}
-
-
 
 
 }
