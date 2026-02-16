@@ -1,58 +1,32 @@
-import { JsonRepository } from "../utils/jsonReporitory";
-import { Customer } from "../models/customer";
+import { Customer } from "../models/user";
+import { UserService } from "./userService";
 
-export class CustomerService extends JsonRepository<Customer> {
+export class CustomerService extends UserService<Customer> {
     constructor() {
-        super("backend/resources/data/customers.json");
-    }
-
-    async findAll(): Promise<Customer[]> {
-        const data = await this.load();
-        return data.map(c => ({
-            ...c,
-            birthDate: new Date(c.birthDate),
-            createdAt: new Date(c.createdAt)
-        }))
+        super("./data/customers.json");
     }
 
     async create(customer: Customer): Promise<void> {
-        const customers = await this.load();
-        if(customers.some(c => c.email === customer.email)) {
-            throw new Error(`Email ${customer.email} in use`);
+        if(customer.cpf.length !== 11) {
+            throw new Error("CPF must be 11 digits");
         }
-        customers.push(customer);
-        await this.save(customers);
-    }
 
-    async updateCustomer(id: number, updatedData: Partial<Customer>): Promise<Customer> {
-        delete updatedData.id;
-        delete updatedData.createdAt;
-
-        if (updatedData.email){
-            const customers = await this.load();
-            const emailExists = customers.some(c => c.email === updatedData.email && c.id !== id);
-            if (emailExists) {
-                throw new Error(`Email ${updatedData.email} in use`);
-            }
-        }
-        return await this.update(id, updatedData);
-    }
-
-    async findById(id: number): Promise<Customer | undefined> {
         const customers = await this.findAll();
-        const customer = customers.find(c => c.id === id);
-        if (!customer) {
-            throw new Error(`Customer with id ${id} not found`);
+        if(customers.some(c => c.cpf === customer.cpf)) {
+            throw new Error(`CPF ${customer.cpf} in use`);
         }
-        return customer;
-  }
 
-    async findByEmail(email: string): Promise<Customer | undefined> {
-        const customers = await this.findAll();
-        const customer = customers.find(c => c.email === email);
-        if (!customer) {
-            throw new Error(`Customer with email ${email} not found`);
-        }
-        return customer;
+        await super.create(customer);
+        console.log("Customer created:");
     }
+        
+    async getHighCreditScoreCustomers(): Promise<Customer[]> {
+        const customers = await this.findAll();
+        return customers.filter(c => c.creditScore > 700);
+    }
+
+    async canAffordPurchase(id: number, vehiclePrice: number): Promise<boolean> {
+        const customer = await this.findById(id);
+        return customer.creditScore >= (vehiclePrice * 0.01);
+}
 }
