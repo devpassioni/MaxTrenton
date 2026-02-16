@@ -1,5 +1,6 @@
-import {vehicle} from "./vehicle";
-export class Car extends vehicle{
+import {Vehicle} from "./vehicle";
+
+export class Car extends Vehicle{
     constructor(
         id:number,
         brand: string,
@@ -13,9 +14,9 @@ export class Car extends vehicle{
         public numsOfDoors: number,
         public transmissionType: "Automatic"|"Manual",
         public engine: string,
-        public typeOfFuel: "Gas"|"Alcohol"|"Flex"|"EV",
+        public fuelType: "Gas"|"Alcohol"|"Flex"|"EV"|"Diesel"| "Electric",
         public type: "Sport"|"SUV"| "Hatch"|"Sedan"| "Cabriolet",
-        public HorsePower: number,
+        public horsePower: number,
     ){
         super(id,brand,model,year,color,price,quilometers,status);
         status = "Available";
@@ -27,12 +28,12 @@ public showDetails(id: number): string{
         Fabrication Year: ${this.year}
         Color: ${this.color}
         Price: ${this.price}
-        Quilometers: ${this.quilometers}
+        Quilometers: ${this.kilometers}
         Transmission: ${this.numsOfDoors}
         Engine: ${this.engine}
-        Type of Fuel: ${this.typeOfFuel}
+        Type of Fuel: ${this.fuelType}
         Class Type: ${this.type}
-        HorsePower (HP): ${this.HorsePower}
+        HorsePower (HP): ${this.horsePower}
         Available: ${this.status}`
 }                   
 

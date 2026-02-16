@@ -1,6 +1,6 @@
-import {vehicle} from "./vehicle";
+import {Vehicle} from "./vehicle";
 
-export class Motorcycle extends vehicle{
+export class Motorcycle extends Vehicle{
     constructor(
         id:number,
         brand: string,
