@@ -1,6 +1,7 @@
 export class Deal{
     constructor(
         public id: number,
+        public typeofVehicle: "Vehicle" | "Motorcycle",
         public vehicleID: number,
         public customerID: number,
         public sellerID: number,

@@ -10,13 +10,13 @@ export class SellerService extends JsonRepository <Seller>{
 public async addSeller(seller: Seller): Promise<void>{
     const vendor = await this.load();
     vendor.push(seller);
-    this.save(vendor);
+    await this.save(vendor);
 }
 
 public async removeSeller(id: number): Promise<void>{
     const vendor = await this.load();
     const index = vendor.findIndex(seller => seller.id === id)
-    if(!index) throw new Error(`Error! ID ${id} not founded.`)
+    if(index === -1) throw new Error(`Error! ID ${id} not founded.`)
     
     vendor.splice(index,1);
     await this.save(vendor);
@@ -53,8 +53,8 @@ public async activateSeller(id: number): Promise<void>{
     const findex = vendor.find(seller => seller.id === id)
     if(!findex) throw new Error(`Error! ${id} not founded`);
 
-    if(findex.status == "Inactive")findex.Activate;
-    this.save(vendor);
+    if(findex.status == "Inactive")findex.Activate()
+    await this.save(vendor);
 }
 
 public async deactivateSeller(id: number): Promise<void>{
@@ -62,16 +62,15 @@ public async deactivateSeller(id: number): Promise<void>{
     const findex = vendor.find(seller => seller.id === id);
     if(!findex) throw new Error(`Error! ${id} not founded`);
     
-    if(findex.status == "Active") findex.Disactivate
-    this.save(vendor)
+    if(findex.status == "Active") findex.Disactivate()
+    await this.save(vendor)
 }
 
-public async countActiveSellers(): Promise<Seller []>{
+public async countActiveSellers(): Promise<number>{
     const vendor = await this.load();
     const actives = vendor.filter(seller => seller.status === "Active")
     if (!actives) throw new Error(`Error no one is active`)
-        return actives
+    return actives.length
     }
-
 
 }
