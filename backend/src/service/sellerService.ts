@@ -15,6 +15,7 @@ export class SellerService extends UserService<Seller> {
         console.log("Seller created:");
     }
 
+    // POSSIVEL REFATORAÇÃO.
     async toggleStatus(id: number): Promise<void> {
         const sellers = await this.load();
         const index = sellers.findIndex(s => s.id === id);
