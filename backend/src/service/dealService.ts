@@ -3,7 +3,7 @@ import {SellerService} from "../service/sellerService"
 import {CustomerService} from "../service/customerService"
 import {CarService} from "../service/carService"
 import {MotorcycleService} from "../service/motorcycleService"
-import {JsonRepository} from "../utils/jsonReporitory"
+import {JsonRepository} from "../utils/jsonRepository"
 
 
 export class DealService extends JsonRepository<Deal>{
