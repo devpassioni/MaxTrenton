@@ -48,9 +48,30 @@ public async getActiveSellers(): Promise<Seller []>{
     return findex
 }
 
+public async activateSeller(id: number): Promise<void>{
+    const vendor = await this.load()
+    const findex = vendor.find(seller => seller.id === id)
+    if(!findex) throw new Error(`Error! ${id} not founded`);
 
+    if(findex.status == "Inactive")findex.Activate;
+    this.save(vendor);
+}
 
+public async deactivateSeller(id: number): Promise<void>{
+    const vendor = await this.load();
+    const findex = vendor.find(seller => seller.id === id);
+    if(!findex) throw new Error(`Error! ${id} not founded`);
+    
+    if(findex.status == "Active") findex.Disactivate
+    this.save(vendor)
+}
 
+public async countActiveSellers(): Promise<Seller []>{
+    const vendor = await this.load();
+    const actives = vendor.filter(seller => seller.status === "Active")
+    if (!actives) throw new Error(`Error no one is active`)
+        return actives
+    }
 
 
 }
