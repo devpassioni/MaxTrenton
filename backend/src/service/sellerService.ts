@@ -1,77 +1,39 @@
-import {Seller} from "../models/seller"
-import {JsonRepository} from "../utils/jsonReporitory"
+import { UserService } from "./userService";
+import { Seller } from "../models/user";
 
-export class SellerService extends JsonRepository <Seller>{
-
-    constructor(){
-        super("resources/data/seller.json")
+export class SellerService extends UserService<Seller> {
+    constructor() {
+        super("resources/data/sellers.json");
     }
 
-public async addSeller(seller: Seller): Promise<void>{
-    const vendor = await this.load();
-    vendor.push(seller);
-    this.save(vendor);
-}
+    async create(seller: Seller): Promise<void> {
 
-public async removeSeller(id: number): Promise<void>{
-    const vendor = await this.load();
-    const index = vendor.findIndex(seller => seller.id === id)
-    if(!index) throw new Error(`Error! ID ${id} not founded.`)
-    
-    vendor.splice(index,1);
-    await this.save(vendor);
-}
-
-public async getAllSeller(): Promise<Seller[]>{
-    const vendor = await this.load();
-    return vendor;
-}
-
-public async getSellerById(id: number): Promise<Seller>{
-    const vendor = await this.load();
-    const findex = vendor.find(seller => seller.id === id)
-    if(!findex) throw new Error(`Error! ID ${id} not founded.`)
-    return findex
-}
-
-public async getSellerByName(name: string): Promise<Seller>{
-    const vendor = await this.load();
-    const findex = vendor.find(seller => seller.name === name);
-    if(!findex) throw new Error(`Error! ${name} doesn't exist`);
-        return findex;
-}
-
-public async getActiveSellers(): Promise<Seller []>{
-    const vendor = await this.load();
-    const findex = vendor.filter(seller => seller.status == "Active")
-    if(!findex) throw new Error(`Error! No sellers working`);
-    return findex
-}
-
-public async activateSeller(id: number): Promise<void>{
-    const vendor = await this.load()
-    const findex = vendor.find(seller => seller.id === id)
-    if(!findex) throw new Error(`Error! ${id} not founded`);
-
-    if(findex.status == "Inactive")findex.Activate;
-    this.save(vendor);
-}
-
-public async deactivateSeller(id: number): Promise<void>{
-    const vendor = await this.load();
-    const findex = vendor.find(seller => seller.id === id);
-    if(!findex) throw new Error(`Error! ${id} not founded`);
-    
-    if(findex.status == "Active") findex.Disactivate
-    this.save(vendor)
-}
-
-public async countActiveSellers(): Promise<Seller []>{
-    const vendor = await this.load();
-    const actives = vendor.filter(seller => seller.status === "Active")
-    if (!actives) throw new Error(`Error no one is active`)
-        return actives
+        if(seller.salesCount < 0) {
+            throw new Error("Sales count cannot be negative");
+        }
+        await super.create(seller);
+        console.log("Seller created:");
     }
 
+    async toggleStatus(id: number): Promise<void> {
+        const sellers = await this.load();
+        const index = sellers.findIndex(s => s.id === id);
+    
+        if (index === -1) throw new Error("Not found!");
+        sellers[index].status = sellers[index].status === "Active" ? "Inactive" : "Active";
+        await this.save(sellers);
+    }
 
+    async getActiveSellers(): Promise<Seller[]> {
+        const sellers = await this.findAll();
+        return sellers.filter(s => s.status === "Active");
+    }
+    
+    async getTopSeller(limit: number = 5): Promise<Seller[]> {
+        const sellers = await this.findAll();
+        return sellers
+            .sort((a, b) => b.salesCount - a.salesCount)
+            .slice(0, limit);
+    }
+        
 }

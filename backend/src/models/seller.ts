@@ -1,14 +1,20 @@
-export class Seller{
+import { User } from "./user";
+
+export class Seller extends User {
     constructor(
-        public id: number,
-        public name: string,
-        public email: string,
-        public phone: string,
+        id: number,
+        name: string,
+        email: string,
+        phone: string,
+        birthDate: Date,
+        
         public registrationCode: number,
         public salesCount: number,
         public status: "Active"|"Inactive"
-    ){
 
+        
+    ){
+        super(id, name, email, phone, birthDate);
     }
 
 public showDetails(): void{

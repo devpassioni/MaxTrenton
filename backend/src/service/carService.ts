@@ -1,4 +1,4 @@
-import {JsonRepository} from "../utils/jsonReporitory"
+import {JsonRepository} from "../utils/jsonRepository"
 import {Car} from "../models/car";
 
 export class CarService extends JsonRepository<Car>{

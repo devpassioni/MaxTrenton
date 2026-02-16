@@ -1,13 +1,19 @@
-export class Customer {
-    public createdAt: Date;
+import { User } from "./user";
+
+export class Customer extends User {
     constructor(
-        public id: number,
-        public name: string,
-        public email: string,
-        public phone: string,
-        public birthDate: Date,
-        
-    ) {
-        this.createdAt = new Date();
-    }
+        id: number,
+        name: string,
+        email: string,
+        phone: string,
+        birthDate: Date,
+
+        public creditScore: number,
+        public cpf: string,
+    )
+        {
+            super(id, name, email, phone, birthDate);
+        }
 }
+
+        

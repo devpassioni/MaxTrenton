@@ -1,5 +1,5 @@
 import {Motorcycle} from "../models/motorcycle";
-import {JsonRepository} from "../utils/jsonReporitory"
+import {JsonRepository} from "../utils/jsonRepository"
 
 export class MotorcycleService extends JsonRepository<Motorcycle>{
     constructor(){
