@@ -3,7 +3,7 @@ import {JsonRepository} from "../utils/jsonRepository"
 
 export class MotorcycleService extends JsonRepository<Motorcycle>{
     constructor(){
-        super("resources/data/motorcycle.json")
+        super("backend/resources/data/motorcycle.json")
     }
 public async addMoto(moto: Motorcycle): Promise<void>{
     const motorcycle = await this.load();

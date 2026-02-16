@@ -3,7 +3,7 @@ import { UserService } from "./userService";
 
 export class CustomerService extends UserService<Customer> {
     constructor() {
-        super("./data/customers.json");
+        super("backend/resources/data/customers.json");
     }
 
     async create(customer: Customer): Promise<void> {
