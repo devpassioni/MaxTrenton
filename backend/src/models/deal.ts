@@ -6,6 +6,7 @@ export class Deal{
         public customerID: number,
         public sellerID: number,
         public date: Date,
+        public totalValue: number,
         public downPayment: number,
         public offeredPrice: number,
         public status: "Pending"|"Approved"| "Refused"

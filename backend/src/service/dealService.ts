@@ -53,7 +53,7 @@ public async getDealBySeller(sellerId: number): Promise<Deal []>{
 public async getDealbyStatus(status:"Pending"|"Approved"| "Refused" ): Promise<Deal []>{
     const acordo = await this.load();
     const filterDeal = acordo.filter(acordo => acordo.status === status);
-    return await filterDeal
+    return filterDeal
 }
 
 public async approveDeal(id: number): Promise<void>{
@@ -64,6 +64,43 @@ public async approveDeal(id: number): Promise<void>{
     filterDeal.approveDeal()
     await this.save(acordo)
     }
+
+public async refuseDeal(id: number): Promise<void>{
+    const acordo = await this.load();
+    const filterDeal = acordo.find(acordo => acordo.id === id)
+    if(!filterDeal) throw new Error(`Error -> ${id} not founded`)
+    
+    filterDeal.refuseDeal()
+    await this.save(acordo);
+}
+
+public async getPendingDeals(): Promise<Deal []>{
+    const acordo = await this.load();
+    const filterDeal = acordo.filter(acordo => acordo.status === "Pending")
+    if(filterDeal.length === 0) throw new Error(`Error - no Pending Deals`)
+    return filterDeal
+}
+
+public async getApprovedDeals(): Promise<Deal []>{
+    const acordo = await this.load();
+    const filterDeal = acordo.filter(acordo => acordo.status === "Approved")
+    if(filterDeal.length === 0) throw new Error(`Error - no Approved Deals`)
+    return filterDeal
+}
+
+public async getTotalRevenue(): Promise<number>{
+    const acordo = await this.load();
+    const totalValue = acordo.filter(acordo => acordo.status === "Approved")
+   return totalValue.reduce((acumulador, deal)=> acumulador + deal.totalValue,0)
+}
+//avaliar
+public async createFinancing(dealID: number ): Promise<void>{
+    const acordo = await this.load();
+    const filterDeal = acordo.find(acordo => acordo.status === "Approved");
+    if(!filterDeal) throw new Error(`This Deal isn't approved yet`);
+
+    
+} 
 
 
 
