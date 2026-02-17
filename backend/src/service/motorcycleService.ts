@@ -1,9 +1,9 @@
 import { Motorcycle } from "../models/motorcycle";
 import { VehicleService } from "./vehicleService";
 
-export class MotorcycleService extends VehicleService<Motorcycle> {
+export class MotorcycleService extends VehicleService<Motorcycle & {id: number}> {
     constructor() {
-        super("/backend/src/data/motorcycles.json");
+        super("backend/resources/data/motorcycles.json");
     }
 
     async findByBodyType(bodyType: "Sport"|"Trail"|"Custom"): Promise<Motorcycle[]> {

@@ -1,5 +1,5 @@
-import { SellerService } from "../service/sellerService";
-import { Seller } from "../models/user";
+import { SellerService } from "../../service/sellerService";
+import { Seller } from "../../models/user";
 import { run } from "node:test";
 
 async function testCreateSeller() {

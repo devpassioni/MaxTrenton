@@ -1,8 +1,9 @@
 import {Vehicle} from "./vehicle";
 
 export class Car extends Vehicle{
+    public id?: number;
     constructor(
-        id:number,
+        
         brand: string,
         model: string,
         year: number,
@@ -10,15 +11,16 @@ export class Car extends Vehicle{
         price: number,
         quilometers: number,
         status: "Available" | "Sold" | "Reserved",
+        numberPlate: string,
         
         public numsOfDoors: number,
         public transmissionType: "Automatic"|"Manual",
         public engine: string,
-        public fuelType: "Gas"|"Alcohol"|"Flex"|"EV"|"Diesel"| "Electric",
+        public fuelType: "Gas"|"Alcohol"|"Flex"|"EV"|"Diesel",
         public type: "Sport"|"SUV"| "Hatch"|"Sedan"| "Cabriolet",
         public horsePower: number,
     ){
-        super(id,brand,model,year,color,price,quilometers,status);
+        super(brand,model,year,color,price,quilometers,status, numberPlate);
         status = "Available";
     }
 

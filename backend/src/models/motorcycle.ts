@@ -2,7 +2,7 @@ import {Vehicle} from "./vehicle";
 
 export class Motorcycle extends Vehicle{
     constructor(
-        id:number,
+
         brand: string,
         model: string,
         year: number,
@@ -10,6 +10,7 @@ export class Motorcycle extends Vehicle{
         price: number,
         quilometers: number,
         status: "Available" | "Sold" | "Reserved",
+        numberPlate: string,
 
         //
         public engineDisplacement: number,
@@ -18,7 +19,7 @@ export class Motorcycle extends Vehicle{
         
     
     ){
-        super(id,brand,model,year,color,price,quilometers,status);
+        super(brand,model,year,color,price,quilometers,status, numberPlate);
     }
 
 public markAsSold(){

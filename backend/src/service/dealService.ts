@@ -41,9 +41,10 @@ public async addDeal(typeofVehicle: "Car"|"Motorcycle", vehicleID: number, custo
 
     const acordo = await this.load()
 
-    //const newDeal = new Deal(
+//     const newDeal = new Deal(
+
         
-   //)
+//    )
 }
 public async removeDeal(id: number): Promise<void>{
     const acordo = await this.load();
