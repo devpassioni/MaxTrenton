@@ -87,7 +87,7 @@ public async approveDeal(id: number): Promise<void>{
     const filterDeal = acordo.find(acordo => acordo.id === id)
     if(!filterDeal) throw new Error(`Error -> ${id} not founded`)
 
-    filterDeal.approveDeal()
+    filterDeal.status = "Approved"
     await this.save(acordo)
     }
 

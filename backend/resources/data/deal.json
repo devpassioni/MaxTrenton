@@ -9,6 +9,6 @@
     "downPayment": 5000,
     "offeredPrice": 100000,
     "paymentMethod": "Financing",
-    "status": "Pending"
+    "status": "Approved"
   }
 ]
