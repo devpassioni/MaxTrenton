@@ -48,6 +48,7 @@ public async addDeal(typeofVehicle: "Car"|"Motorcycle", vehicleID: number, custo
     await this.save(acordo)    
     
 }
+
 public async removeDeal(id: number): Promise<void>{
     const acordo = await this.load();
     const findex = acordo.findIndex(deal => deal.id === id);
@@ -96,7 +97,7 @@ public async refuseDeal(id: number): Promise<void>{
     const filterDeal = acordo.find(acordo => acordo.id === id)
     if(!filterDeal) throw new Error(`Error -> ${id} not founded`)
     
-    filterDeal.refuseDeal()
+    filterDeal.status = "Refused"
     await this.save(acordo);
 }
 

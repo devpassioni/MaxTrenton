@@ -15,28 +15,6 @@ export class Deal{
 
     }
 
-public showDetails(){
-console.log(`Transaction ID: ${this.id}\n
-             Customer ID: ${this.customerID}\n                          
-             Seller ID: ${this.sellerID}\n                          
-             Offered Price: ${this.offeredPrice}\n  
-             Status: ${this.status}
-                                        
-                                          `)    
-}
 
-public refuseDeal(){
-    console.log("This Deal was Refused by the System")
-    this.status = "Refused"
-}
 
-public approveDeal(){
-    console.log(`Deal ${this.id} was sucessfully approved`)
-    this.status = "Approved"
-}
-
-public isPending(){
-    if(this.status === "Approved" || this.status === "Refused") return false
-    return true
-}
 }

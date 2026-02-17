@@ -1,7 +1,7 @@
 import {JsonRepository} from "../utils/jsonRepository"
 import {DealService} from "../service/dealService"
 import {Financing} from "../models/financing"
-export class FinancingService extends JsonRepository<Financing>{
+export class FinancingService extends JsonRepository<Financing &{id:number}>{
 
     constructor(
 

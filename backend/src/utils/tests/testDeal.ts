@@ -18,10 +18,14 @@ async function test() {
     const deals = await deal1.getallDeals()
     console.log("Antes:", deals)
     
-    await deal1.approveDeal(1)  // ← await aqui
+      // ← await aqui
     
     const updatedDeals = await deal1.getallDeals()  // ← busca de novo
     console.log("Depois:", updatedDeals)
+    const DealDetails = await deal1.removeDeal(1)
+    const updatedDeals2 = await deal1.getallDeals()  // ← busca de novo
+    const updateDeals3 = await deal1.getTotalRevenue()
+    console.log(updateDeals3)
 }
 
 test()
