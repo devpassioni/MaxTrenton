@@ -47,4 +47,9 @@ export abstract class JsonRepository<T extends {id: number}> {
         return updatedItem;
     }
 
+    protected async genId(): Promise<number> {
+        const items = await this.load();
+        const maxId = items.reduce((max, item) => item.id > max ? item.id : max, 0);
+        return maxId + 1;
+    }
 }

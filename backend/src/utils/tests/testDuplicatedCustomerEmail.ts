@@ -1,5 +1,5 @@
-import { CustomerService } from "../service/customerService";
-import { Customer } from "../models/user";
+import { CustomerService } from "../../service/customerService";
+import { Customer } from "../../models/user";
 
 
 async function duplicatedEmailTest() {
