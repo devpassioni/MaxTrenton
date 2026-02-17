@@ -19,6 +19,20 @@ export abstract class JsonRepository<T extends {id: number}> {
             JSON.stringify(items, null, 2),
         );
     }
+
+    protected async delete(id: number): Promise<void> {
+        const items = await this.load();
+        
+        const exists = items.some(item => item.id === id);
+        if (!exists) {
+            throw new Error(`Item com id ${id} não encontrado.`);
+        }
+
+        const filteredItems = items.filter(item => item.id !== id);
+        
+        await this.save(filteredItems);
+    }
+
     public async update(id: number, updatedData: Partial<T>): Promise<T> {
         const items = await this.load();
         const index = items.findIndex(item => item.id === id);
@@ -32,4 +46,5 @@ export abstract class JsonRepository<T extends {id: number}> {
         await this.save(items);
         return updatedItem;
     }
+
 }

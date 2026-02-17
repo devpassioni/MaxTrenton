@@ -1,4 +1,4 @@
-export abstract class vehicle{
+export abstract class Vehicle{
     constructor(
         public id: number,
         public brand: string,
@@ -6,7 +6,7 @@ export abstract class vehicle{
         public year: number,
         public color: string,
         public price: number,
-        public quilometers: number,
+        public kilometers: number,
         public status: "Available"|"Sold"|"Reserved"
     ){
 
