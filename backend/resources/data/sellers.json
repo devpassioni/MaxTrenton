@@ -1,1 +1,13 @@
-[]
+[
+  {
+    "id": 1771356637315,
+    "name": "John Doe",
+    "email": "johndoe@email.com",
+    "phone": "11988888888",
+    "birthDate": "1990-01-01T00:00:00.000Z",
+    "createdAt": "2026-02-17T19:30:37.315Z",
+    "registrationCode": 1001,
+    "salesCount": 0,
+    "status": "Active"
+  }
+]

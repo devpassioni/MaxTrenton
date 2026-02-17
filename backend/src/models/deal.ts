@@ -1,11 +1,11 @@
 export class Deal{
+    
     constructor(
         public id: number,
         public typeofVehicle: "Car" | "Motorcycle",
         public vehicleID: number,
         public customerID: number,
         public sellerID: number,
-        public date: Date,
         public totalValue: number,
         public downPayment: number,
         public offeredPrice: number,
@@ -18,8 +18,7 @@ export class Deal{
 public showDetails(){
 console.log(`Transaction ID: ${this.id}\n
              Customer ID: ${this.customerID}\n                          
-             Seller ID: ${this.sellerID}\n
-             Date: ${this.date}\n                           
+             Seller ID: ${this.sellerID}\n                          
              Offered Price: ${this.offeredPrice}\n  
              Status: ${this.status}
                                         

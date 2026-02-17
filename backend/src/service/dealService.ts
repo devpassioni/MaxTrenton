@@ -16,20 +16,22 @@ interface dealDetails {
     seller: Seller
 }
 
-export class DealService extends JsonRepository<Deal>{
+export class DealService extends JsonRepository<Deal & {id:number}>{
 
     constructor(
         private carService: CarService,
         private motoService: MotorcycleService,
         private sellerService: SellerService,
         private customerService: CustomerService,
-        private idGenerator :
+        
     ){
         super("resources/data/deal.json")
+        
     }
 
 
-public async addDeal(typeofVehicle: "Car"|"Motorcycle", vehicleID: number, customerID: number, sellerID: number, totalValue: number, offeredPrice: number, paymentMethod: "Finacing"|"Cash"): Promise<void>{
+public async addDeal(typeofVehicle: "Car"|"Motorcycle", vehicleID: number, customerID: number, sellerID: number,downPayment:number, totalValue: number, offeredPrice: number, paymentMethod: "Financing"|"Cash",Status: "Pending"): Promise<void>{
+    
     if(typeofVehicle === "Car"){
      await this.carService.findById(vehicleID);
     }else if(typeofVehicle == "Motorcycle"){
@@ -40,11 +42,11 @@ public async addDeal(typeofVehicle: "Car"|"Motorcycle", vehicleID: number, custo
     offeredPrice = totalValue; //offeredprice vai criar com o valor do totalValue passado pela concessionaria na criacao, depois o cliente pode oferecer e o seller decide se aceita o nao
 
     const acordo = await this.load()
-
-//     const newDeal = new Deal(
-
-        
-//    )
+    const newId = await this.genId()
+    const newDeal = new Deal(newId,typeofVehicle,vehicleID,customerID,sellerID,totalValue,downPayment,offeredPrice,paymentMethod,"Pending")
+    acordo.push(newDeal)
+    await this.save(acordo)    
+    
 }
 public async removeDeal(id: number): Promise<void>{
     const acordo = await this.load();
