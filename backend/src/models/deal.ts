@@ -1,7 +1,7 @@
 export class Deal{
     constructor(
         public id: number,
-        public typeofVehicle: "Vehicle" | "Motorcycle",
+        public typeofVehicle: "Car" | "Motorcycle",
         public vehicleID: number,
         public customerID: number,
         public sellerID: number,
@@ -9,6 +9,7 @@ export class Deal{
         public totalValue: number,
         public downPayment: number,
         public offeredPrice: number,
+        public paymentMethod: "Financing" | "Cash",
         public status: "Pending"|"Approved"| "Refused"
     ){
 

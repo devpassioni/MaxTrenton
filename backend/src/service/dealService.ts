@@ -1,10 +1,20 @@
 import {Deal} from "../models/deal"
+import {Car} from "../models/car"
+import {Motorcycle} from "../models/motorcycle"
+import {Customer} from "../models/customer"
+import {Seller} from "../models/seller"
 import {SellerService} from "../service/sellerService"
 import {CustomerService} from "../service/customerService"
 import {CarService} from "../service/carService"
 import {MotorcycleService} from "../service/motorcycleService"
 import {JsonRepository} from "../utils/jsonRepository"
 
+interface dealDetails {
+    deal: Deal,
+    vehicle: Car | Motorcycle,
+    customer: Customer,
+    seller: Seller
+}
 
 export class DealService extends JsonRepository<Deal>{
 
@@ -13,14 +23,27 @@ export class DealService extends JsonRepository<Deal>{
         private motoService: MotorcycleService,
         private sellerService: SellerService,
         private customerService: CustomerService,
+        private idGenerator :
     ){
         super("resources/data/deal.json")
     }
 
-public async addDeal(deal: Deal): Promise<void>{
-    const acordo = await this.load();
-    acordo.push(deal)
-    await this.save(acordo)
+
+public async addDeal(typeofVehicle: "Car"|"Motorcycle", vehicleID: number, customerID: number, sellerID: number, totalValue: number, offeredPrice: number, paymentMethod: "Finacing"|"Cash"): Promise<void>{
+    if(typeofVehicle === "Car"){
+     await this.carService.findById(vehicleID);
+    }else if(typeofVehicle == "Motorcycle"){
+     await this.motoService.findById(vehicleID)
+    }
+    await this.customerService.findById(customerID);
+    await this.sellerService.findById(sellerID);
+    offeredPrice = totalValue; //offeredprice vai criar com o valor do totalValue passado pela concessionaria na criacao, depois o cliente pode oferecer e o seller decide se aceita o nao
+
+    const acordo = await this.load()
+
+    //const newDeal = new Deal(
+        
+   //)
 }
 public async removeDeal(id: number): Promise<void>{
     const acordo = await this.load();
@@ -88,20 +111,19 @@ public async getApprovedDeals(): Promise<Deal []>{
     return filterDeal
 }
 
+public async acceptofferedPricebyCustomer(dealId: number, offeredPrice: number): Promise<Deal>{
+    const acordo = await this.load();
+    const findex = acordo.find(a => a.id == dealId)
+    if(!findex) throw new Error("Error!")
+    findex.totalValue = offeredPrice;
+    await this.save(acordo)
+    return findex
+}
+
 public async getTotalRevenue(): Promise<number>{
     const acordo = await this.load();
     const totalValue = acordo.filter(acordo => acordo.status === "Approved")
    return totalValue.reduce((acumulador, deal)=> acumulador + deal.totalValue,0)
 }
-//avaliar
-public async createFinancing(dealID: number ): Promise<void>{
-    const acordo = await this.load();
-    const filterDeal = acordo.find(acordo => acordo.status === "Approved");
-    if(!filterDeal) throw new Error(`This Deal isn't approved yet`);
-
-    
-} 
-
-
 
 }
