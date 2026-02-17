@@ -3,7 +3,6 @@ export class Financing{
         public id: number,
         public dealID: number,
         public downPayment: number,
-        public installments: number,
         public interestRate: number,
         public totalValue: number,
         public totalMonth: 12 | 24 | 36 | 48 | 60,
@@ -12,14 +11,7 @@ export class Financing{
 
     }
 
-public showDetails(): string{
-    return `Financing ID: ${this.id}\n
-            Deal ID: ${this.dealID}\n
-            Down Payment: ${this.downPayment}\n   
-            Quantity of installments: ${this.installments}\n
-            Bank Interest Rate: ${this.interestRate}\n
-            Total Value: ${this.totalValue}`
-}
+
 
 
 public calculateInstallmentByPriceTable(): number{
