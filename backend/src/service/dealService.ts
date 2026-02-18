@@ -58,6 +58,7 @@ public async getallDeals(): Promise<Deal []>{
     if(!acordo) throw new Error(`No Deals founded`)
     return acordo
 }
+// FindById movido para o jsonRepository, onde é mais genérico e pode ser utilizado por outros serviços
 
 public async getDealById(id: number): Promise<Deal>{
     const acordo = await this.load();

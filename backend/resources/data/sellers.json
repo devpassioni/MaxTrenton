@@ -1,1 +1,13 @@
-[]
+[
+  {
+    "name": "John Doe",
+    "email": "johndoe@email.com",
+    "phone": "11999999999",
+    "birthDate": "1985-05-15T00:00:00.000Z",
+    "createdAt": "2026-02-18T21:53:37.556Z",
+    "registrationCode": 12345,
+    "salesCount": 10,
+    "status": "Active",
+    "id": 1
+  }
+]

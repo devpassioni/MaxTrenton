@@ -1,8 +1,9 @@
 import { User } from "./user";
 
 export class Seller extends User {
+        public id?: number;
     constructor(
-        id: number,
+
         name: string,
         email: string,
         phone: string,
@@ -14,7 +15,7 @@ export class Seller extends User {
 
         
     ){
-        super(id, name, email, phone, birthDate);
+        super(name, email, phone, birthDate);
     }
 
 public showDetails(): void{

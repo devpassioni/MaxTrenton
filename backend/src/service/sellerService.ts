@@ -7,12 +7,10 @@ export class SellerService extends UserService<Seller> {
     }
 
     async create(seller: Seller): Promise<void> {
-
         if(seller.salesCount < 0) {
             throw new Error("Sales count cannot be negative");
         }
         await super.create(seller);
-        console.log("Seller created:");
     }
 
     // POSSIVEL REFATORAÇÃO.

@@ -1,1 +1,22 @@
-[]
+[
+  {
+    "name": "Ryan Rouxinol",
+    "email": "1771451599981@email.com",
+    "phone": "11999999999",
+    "birthDate": "2000-01-01T00:00:00.000Z",
+    "createdAt": "2026-02-18T21:53:19.981Z",
+    "creditScore": 850,
+    "cpf": "12345678901",
+    "id": 1
+  },
+  {
+    "name": "Jane Doe",
+    "email": "janedoe@email.com",
+    "phone": "11988888888",
+    "birthDate": "1995-01-01T00:00:00.000Z",
+    "createdAt": "2026-02-18T21:53:19.986Z",
+    "creditScore": 750,
+    "cpf": "12345678902",
+    "id": 2
+  }
+]

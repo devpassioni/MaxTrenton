@@ -11,7 +11,6 @@ async function testCreateCustomer() {
     try {
         console.log("\n[Test 1] Create Customer.");
         const newCustomer = new Customer(
-            Date.now(),
             "Ryan Rouxinol",
             `${Date.now()}@email.com`,
             "11999999999", 
@@ -24,7 +23,6 @@ async function testCreateCustomer() {
 
         console.log("\n[Test 2] Create new Customer")
         const newCustomer2 = new Customer(
-            Date.now() + 1,
             "Jane Doe",
             "janedoe@email.com",
             "11988888888", 
@@ -48,7 +46,6 @@ async function testCreateCustomer() {
 
         console.log("\n[Test 5] Customer with invalid CPF...");
         const newCustomerInvalid = new Customer(
-            2,
             "Invalid Customer",
             "invalidemail@email.com", 
             "11999999999",

@@ -2,7 +2,6 @@ import {Vehicle} from "./vehicle";
 
 export class Motorcycle extends Vehicle{
     constructor(
-
         brand: string,
         model: string,
         year: number,

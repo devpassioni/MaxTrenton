@@ -1,7 +1,7 @@
 import { readFile, writeFile } from "fs/promises";
 import path from "path";
 
-export abstract class JsonRepository<T extends {id: number}> {
+export abstract class JsonRepository<T extends {id?: number}> {
 
     protected filePath: string;
 
@@ -49,7 +49,16 @@ export abstract class JsonRepository<T extends {id: number}> {
 
     protected async genId(): Promise<number> {
         const items = await this.load();
-        const maxId = items.reduce((max, item) => item.id > max ? item.id : max, 0);
+        const maxId = items.reduce((max, item) => (item.id ?? 0) > max ? (item.id ?? 0) : max, 0);
         return maxId + 1;
+    }
+
+    public async findById(id: number): Promise<T> {
+        const items = await this.load();
+        const item = items.find(item => item.id === id);
+        if (!item) {
+            throw new Error(`Item with id ${id} not found`);
+        }
+        return item;
     }
 }

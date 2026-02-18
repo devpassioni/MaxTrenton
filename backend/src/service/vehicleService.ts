@@ -1,17 +1,17 @@
 import { JsonRepository } from "../utils/jsonRepository";
 import { Vehicle } from "../models/vehicle";
 
-export class VehicleService<T extends Vehicle & {id: number}> extends JsonRepository<T> {
+export class VehicleService<T extends Vehicle> extends JsonRepository<T> {
     constructor(filePath: string) {
         super(filePath);
     }
 
         async create(entity: T): Promise<void> {
-            const data = await this.load();
+            const data = await this.load(); 
             if(data.some(v => v.id === entity.id)) {
                 throw new Error(`Vehicle with ID ${entity.id} already exists`);
             }
-            (entity as any).id = await this.genId();
+            entity.id = await this.genId();
             data.push(entity);
             await this.save(data);
     }
@@ -45,15 +45,6 @@ export class VehicleService<T extends Vehicle & {id: number}> extends JsonReposi
 
         return await this.update(id, updatedData);
     }
-
-    async findById(id: number): Promise<T> {
-        const data = await this.findAll();
-        const found = data.find(v => v.id === id);
-        if (!found) {
-            throw new Error(`Entity with id ${id} not found`);
-        }
-        return found;
-  }
 
     async findByStatus(status: "Available"|"Sold"|"Reserved"): Promise<T[]> {
         const data = await this.findAll();

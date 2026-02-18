@@ -1,5 +1,5 @@
 export abstract class Vehicle{
-            public id?: number
+        public id?: number
     constructor(
         public brand: string,
         public model: string,

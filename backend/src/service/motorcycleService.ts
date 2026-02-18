@@ -1,7 +1,7 @@
 import { Motorcycle } from "../models/motorcycle";
 import { VehicleService } from "./vehicleService";
 
-export class MotorcycleService extends VehicleService<Motorcycle & {id: number}> {
+export class MotorcycleService extends VehicleService<Motorcycle> {
     constructor() {
         super("backend/resources/data/motorcycles.json");
     }

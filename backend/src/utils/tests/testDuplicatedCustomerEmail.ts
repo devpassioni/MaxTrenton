@@ -7,7 +7,6 @@ async function duplicatedEmailTest() {
     try {
         console.log("\n[Test 1] Create Customer with duplicate email.");
         const newCustomer1 = new Customer(
-            Date.now(),
             "Alice Smith",
             "alice@email.com",
             "11977777777", 
@@ -19,7 +18,6 @@ async function duplicatedEmailTest() {
         console.log("Created first customer successfully");
 
         const newCustomer2 = new Customer(
-            Date.now() + 1,
             "Bob Johnson",
             "alice@email.com", // Duplicate email
             "11966666666",

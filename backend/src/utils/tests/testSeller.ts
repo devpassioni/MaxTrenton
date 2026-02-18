@@ -7,13 +7,12 @@ async function testCreateSeller() {
     try{
         console.log("\n[Test 1] Create Seller.");
         const newSeller = new Seller(
-            Date.now(),
             "John Doe",
             "johndoe@email.com",
-            "11988888888", 
-            new Date("1990-01-01"), 
-            1001,
-            0, 
+            "11999999999",
+            new Date("1985-05-15"),
+            12345, 
+            10, 
             "Active"
         );
         await sellerService.create(newSeller);
@@ -30,7 +29,6 @@ async function testCreateSeller() {
 
         console.log("\n[Test 4] Seller with negative sales count...");
         const newSellerInvalid = new Seller(
-            1,
             "Invalid Seller",
             "invalidemail@email.com",
             "11988888888",
