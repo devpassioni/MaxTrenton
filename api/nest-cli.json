@@ -4,6 +4,7 @@
   "sourceRoot": "src",
   "entryFile": "api/src/main",
   "compilerOptions": {
-    "deleteOutDir": true
+    "deleteOutDir": true,
+    "assets": ["**/*.json"]
   }
 }
