@@ -3,7 +3,7 @@ import { VehicleService } from "./vehicleService";
 
 export class CarService extends VehicleService<Car & {id: number}> {
     constructor() {
-        super("backend/resources/data/cars.json");
+        super("../backend/resources/data/cars.json");
     }
 
     async findByBodyType(type: "Sedan"|"SUV"|"Coupe"|"Hatchback"): Promise<Car[]> {

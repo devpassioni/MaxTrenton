@@ -14,6 +14,8 @@
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {
+    "@nestjs/testing": "^11.1.14",
+    "@types/jest": "^30.0.0",
     "@types/node": "^25.2.3",
     "nodemon": "^3.1.11",
     "ts-node": "^10.9.2",

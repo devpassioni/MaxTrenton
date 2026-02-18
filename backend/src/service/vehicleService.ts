@@ -6,14 +6,15 @@ export class VehicleService<T extends Vehicle> extends JsonRepository<T> {
         super(filePath);
     }
 
-        async create(entity: T): Promise<void> {
-            const data = await this.load(); 
-            if(data.some(v => v.id === entity.id)) {
-                throw new Error(`Vehicle with ID ${entity.id} already exists`);
+        async create(entity: Omit<T, "id">): Promise<T> {
+            const data = await this.load();
+            if (data.some(v => v.numberPlate === entity.numberPlate)) {
+                throw new Error(`Vehicle with number plate ${entity.numberPlate} already exists`);
             }
-            entity.id = await this.genId();
-            data.push(entity);
+            const newEntity = {...entity, id: await this.genId() } as T;
+            data.push(newEntity);
             await this.save(data);
+            return newEntity;
     }
 
        async deleteVehicle(id: number): Promise<void> {

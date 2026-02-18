@@ -49,5 +49,39 @@
     "type": "Sedan",
     "horsePower": 283,
     "id": 3
+  },
+  {
+    "brand": "Toyota",
+    "model": "Yaris",
+    "year": 2020,
+    "color": "Black",
+    "price": 95000,
+    "kilometers": 30000,
+    "numberPlate": "JKDC1234",
+    "numsOfDoors": 4,
+    "transmissionType": "Automatic",
+    "engine": "2.0",
+    "fuelType": "Flex",
+    "type": "Sedan",
+    "horsePower": 170,
+    "status": "Available",
+    "id": 4
+  },
+  {
+    "brand": "Fiat",
+    "model": "Uno",
+    "year": 1997,
+    "color": "Silver",
+    "price": 8500,
+    "kilometers": 423000,
+    "numberPlate": "KDSC1234",
+    "numsOfDoors": 4,
+    "transmissionType": "Manual",
+    "engine": "1.3",
+    "fuelType": "Flex",
+    "type": "Hatch",
+    "horsePower": 170,
+    "status": "Available",
+    "id": 5
   }
 ]
