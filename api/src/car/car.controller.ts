@@ -16,6 +16,27 @@ async findbyId(@Param('id') id: string){
     return await this.carService.findbyid(Number(id));
 }
 
+@Post('/add')
+async createCar(@Body() carData: any) { 
+   
+    return this.carService.createCar(
+        carData.brand,
+        carData.model,
+        carData.year,
+        carData.color,
+        carData.price,
+        carData.quilometers,
+        carData.status,
+        carData.numberPlate,
+        carData.numsOfDoors,
+        carData.transmissionType,
+        carData.engine,
+        carData.fuelType,
+        carData.type,
+        carData.horsePower
+    );
+}
+
 
 
 }

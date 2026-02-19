@@ -49,5 +49,22 @@
     "type": "Sedan",
     "horsePower": 283,
     "id": 3
+  },
+  {
+    "id": 4,
+    "brand": "bmw",
+    "model": "M4",
+    "year": 2023,
+    "color": "red",
+    "price": 80000,
+    "quilometers": 1200,
+    "status": "Available",
+    "numberPlate": "ABC123",
+    "numsOfDoors": 2,
+    "transmissionType": "Manual",
+    "engine": "B58 I6 LINE",
+    "fuelType": "Gas",
+    "type": "Sport",
+    "horsePower": "442"
   }
 ]

@@ -6,7 +6,7 @@ export class VehicleService<T extends Vehicle & {id: number}> extends JsonReposi
         super(filePath);
     }
 
-        async create(entity: T): Promise<void> {
+        async create(entity: T): Promise<T | undefined > {
             const data = await this.load();
             if(data.some(v => v.id === entity.id)) {
                 throw new Error(`Vehicle with ID ${entity.id} already exists`);
@@ -14,6 +14,7 @@ export class VehicleService<T extends Vehicle & {id: number}> extends JsonReposi
             (entity as any).id = await this.genId();
             data.push(entity);
             await this.save(data);
+            return entity;
     }
 
        async deleteVehicle(id: number): Promise<void> {

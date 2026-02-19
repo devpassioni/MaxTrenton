@@ -1,6 +1,5 @@
-import {Injectable} from "@nestjs/common"
-import {CarService as backendCarService} from "../../../backend/src/service/carService"
-
+import { Injectable } from '@nestjs/common';
+import { CarService as backendCarService } from '../../../backend/src/service/carService';
 
 @Injectable()
 export class CarService{
@@ -39,6 +38,43 @@ export class CarService{
         return await this.carService.findByBodyType(type);
     }
 
+    async createCar( 
+        brand: string,
+        model: string,
+        year: number,
+        color: string,
+        price: number,
+        quilometers: number,
+        status: "Available" | "Sold" | "Reserved",
+        numberPlate: string,
+        
+        numsOfDoors: number,
+        transmissionType: "Automatic"|"Manual",
+        engine: string,
+        fuelType: "Gas"|"Alcohol"|"Flex"|"EV"|"Diesel",
+        type: "Sport"|"SUV"| "Hatch"|"Sedan"| "Cabriolet",
+        horsePower: number,)
+    {
+    const novoCarro = {
+        id: 0, 
+        brand,
+        model,
+        year,
+        color,
+        price,
+        quilometers,
+        status,
+        numberPlate,
+        numsOfDoors,
+        transmissionType,
+        engine,
+        fuelType,
+        type,
+        horsePower
+    } as any;
+
+
+return await this.carService.create(novoCarro)
 
 
 
@@ -47,8 +83,6 @@ export class CarService{
 
 
 
-
-
-
+}
 
 }
