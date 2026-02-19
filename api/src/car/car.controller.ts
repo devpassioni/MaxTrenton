@@ -37,6 +37,9 @@ async createCar(@Body() carData: any) {
     );
 }
 
-
+@Post('/remove')
+async deleteCar(id: number){
+    return this.carService.removeCar(id);
+}
 
 }

@@ -75,14 +75,30 @@ export class CarService{
 
 
 return await this.carService.create(novoCarro)
+}
 
+async removeCar(id: number){
+    return this.carService.deleteVehicle(id);
+}
 
+async findByBrand(brand:string){
+    return this.carService.findByBrand(brand);
+}
 
+async findByPriceRange(min: number, max: number){
+    return this.carService.findByPriceRange(min,max);
+}
 
+async findbyYear(year: number){
+    return this.carService.findByYear(year);
+}
 
+async findByModel(model: string){
+    return this.carService.findByModel(model);
+}
 
-
-
+async countAvailableCars(){
+    return this.carService.countAvailableVehicles();
 }
 
 }
