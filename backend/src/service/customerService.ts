@@ -29,4 +29,10 @@ export class CustomerService extends UserService<Customer> {
         const customer = await this.findById(id);
         return customer.creditScore >= (vehiclePrice * 0.01);
 }
+
+
+    async remove(id: number): Promise<void> {
+    await this.delete(id);
+}
+
 }

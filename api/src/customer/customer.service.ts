@@ -6,10 +6,6 @@ import {Customer} from "../../../backend/src/models/customer"
 export class CustomerServiceAPI{
     private customerService = new CustomerService();
 
-
-
-
-
 async findAll(){
     return this.customerService.findAll();
 }
@@ -19,8 +15,27 @@ async findByID(id: number){
 }
 
 
-//Ryan -> Ajustar Create / Delete -> Metodo do Service nao contem gerador de ID e nao pode ser gerado
+async createCustomer(name: string, email: string, phone: string, 
+    birthDate: Date, cpf: number, creditScore: string){
+        const novoCustomer = new Customer( 
+            0,
+            name,
+            email,
+            phone,
+            birthDate,
+            cpf,
+            creditScore,
+        )
+            return this.customerService.create(novoCustomer)
+    }
 
+
+async deleteCustomer(id: number){
+    return this.customerService.remove(id)
+}
 
 }
+
+
+
 
