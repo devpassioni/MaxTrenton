@@ -20,6 +20,7 @@ export class UserService<T extends User> extends JsonRepository<T> {
         if(data.some(c => c.email === entity.email)) {
             throw new Error(`Email ${entity.email} in use`);
         }
+        entity.id = await this.genId();
         data.push(entity);
         await this.save(data);
     }
@@ -38,6 +39,15 @@ export class UserService<T extends User> extends JsonRepository<T> {
         return await this.update(id, updatedData);
     }
 
+    async findByEmail(email: string): Promise<T> {
+        const data = await this.findAll();
+        const found = data.find(u => u.email === email);
+        if (!found) {
+            throw new Error(`Record with email ${email} not found`);
+        }
+        return found;
+    }
+
     async findById(id: number): Promise<T> {
         const data = await this.findAll();
         const found = data.find(u => u.id === id);
@@ -47,12 +57,4 @@ export class UserService<T extends User> extends JsonRepository<T> {
         return found;
   }
 
-    async findByEmail(email: string): Promise<T> {
-        const data = await this.findAll();
-        const found = data.find(u => u.email === email);
-        if (!found) {
-            throw new Error(`Record with email ${email} not found`);
-        }
-        return found;
-    }
 }
