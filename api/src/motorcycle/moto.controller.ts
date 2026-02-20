@@ -8,7 +8,7 @@ export class motoController{
 
 @Get('/listall')
 async findAll(){
-    return this.motoServic.findAll
+    return this.motoServic.findAll();
 }
 
 @Get(':id')
