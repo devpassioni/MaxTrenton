@@ -36,5 +36,10 @@ export class SellerService extends UserService<Seller> {
             .sort((a, b) => b.salesCount - a.salesCount)
             .slice(0, limit);
     }
-        
+ 
+    
+
+    async remove(id: number): Promise<void> {
+    await this.delete(id);
+}
 }

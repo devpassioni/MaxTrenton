@@ -14,7 +14,7 @@ export class Financing{
 
 
 
-public calculateInstallmentByPriceTable(): number[]{
+public calculateInstallmentByPriceTable(): number{
    const financingValue = this.totalValue - this.downPayment
     const i = this.interestRate
     const n = this.totalMonth

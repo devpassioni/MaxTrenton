@@ -3,7 +3,7 @@ import {MotorcycleService} from "../../../backend/src/service/motorcycleService"
 
 @Injectable()
 export class motoServic{
-        motorCycleService = new MotorcycleService()
+       private motorCycleService = new MotorcycleService()
 
 
 
