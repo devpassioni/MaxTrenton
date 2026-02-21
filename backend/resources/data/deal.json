@@ -1,0 +1,38 @@
+[
+  {
+    "id": 2,
+    "typeofVehicle": "Car",
+    "vehicleID": 1,
+    "customerID": 1771356577702,
+    "sellerID": 1771356637315,
+    "totalValue": 100000,
+    "downPayment": 5000,
+    "offeredPrice": 100000,
+    "paymentMethod": "Financing",
+    "status": "Pending"
+  },
+  {
+    "id": 3,
+    "typeofVehicle": "Car",
+    "vehicleID": 1,
+    "customerID": 1771356577702,
+    "sellerID": 1771356637315,
+    "totalValue": 100000,
+    "downPayment": 5000,
+    "offeredPrice": 100000,
+    "paymentMethod": "Financing",
+    "status": "Pending"
+  },
+  {
+    "id": 4,
+    "typeofVehicle": "Car",
+    "vehicleID": 1,
+    "customerID": 1771356577702,
+    "sellerID": 1771356637315,
+    "totalValue": 100000,
+    "downPayment": 5000,
+    "offeredPrice": 100000,
+    "paymentMethod": "Financing",
+    "status": "Pending"
+  }
+]

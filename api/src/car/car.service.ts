@@ -1,0 +1,104 @@
+import { Injectable } from '@nestjs/common';
+import { CarService as backendCarService } from '../../../backend/src/service/carService';
+
+@Injectable()
+export class CarService{
+    private carService = new backendCarService();
+
+
+    async findAll(){
+    const pathAbsoluto = require('path').resolve("resources/data/cars.json");
+    console.log("--- TESTE FINAL ---");
+    
+    try {
+        const fs = require('fs');
+        if (!fs.existsSync(pathAbsoluto)) {
+            console.log("ERRO: Pro Node, esse arquivo NÃO EXISTE aqui:", pathAbsoluto);
+            return [];
+        }
+
+        const conteudo = fs.readFileSync(pathAbsoluto, 'utf-8');
+        console.log("Conteúdo bruto que o Node leu:", ">" + conteudo + "<");
+        console.log("Tamanho em caracteres:", conteudo.length);
+
+        return JSON.parse(conteudo);
+    } catch (e) {
+        console.log("Erro ao tentar ler/parsear:", e.message);
+        return [];
+    }
+       
+    }
+
+    async findbyid(id:number){
+        return await this.carService.findById(id);
+    }
+
+
+    async findByBodytype(type: "Sedan"|"SUV"|"Coupe"|"Hatchback" ){
+        return await this.carService.findByBodyType(type);
+    }
+
+    async createCar( 
+        brand: string,
+        model: string,
+        year: number,
+        color: string,
+        price: number,
+        quilometers: number,
+        status: "Available" | "Sold" | "Reserved",
+        numberPlate: string,
+        
+        numsOfDoors: number,
+        transmissionType: "Automatic"|"Manual",
+        engine: string,
+        fuelType: "Gas"|"Alcohol"|"Flex"|"EV"|"Diesel",
+        type: "Sport"|"SUV"| "Hatch"|"Sedan"| "Cabriolet",
+        horsePower: number,)
+    {
+    const novoCarro = {
+        id: 0, 
+        brand,
+        model,
+        year,
+        color,
+        price,
+        quilometers,
+        status,
+        numberPlate,
+        numsOfDoors,
+        transmissionType,
+        engine,
+        fuelType,
+        type,
+        horsePower
+    } as any;
+
+
+return await this.carService.create(novoCarro)
+}
+
+async removeCar(id: number){
+    return this.carService.deleteVehicle(id);
+}
+
+async findByBrand(brand:string){
+    return this.carService.findByBrand(brand);
+}
+
+async findByPriceRange(min: number, max: number){
+    return this.carService.findByPriceRange(min,max);
+}
+
+async findbyYear(year: number){
+    return this.carService.findByYear(year);
+}
+
+async findByModel(model: string){
+    return this.carService.findByModel(model);
+}
+
+async countAvailableCars(){
+    return this.carService.countAvailableVehicles();
+}
+
+}

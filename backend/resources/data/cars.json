@@ -1,0 +1,53 @@
+[
+  {
+    "brand": "Toyota",
+    "model": "Corolla",
+    "year": 2020,
+    "color": "Silver",
+    "price": 80000,
+    "kilometers": 35000,
+    "status": "Available",
+    "numberPlate": "ABC1234",
+    "numsOfDoors": 4,
+    "transmissionType": "Automatic",
+    "engine": "1.8",
+    "fuelType": "Gas",
+    "type": "Sedan",
+    "horsePower": 140,
+    "id": 1
+  },
+  {
+    "brand": "Honda",
+    "model": "Civic",
+    "year": 2019,
+    "color": "Blue",
+    "price": 75000,
+    "kilometers": 40000,
+    "status": "Available",
+    "numberPlate": "XYZ5678",
+    "numsOfDoors": 4,
+    "transmissionType": "Manual",
+    "engine": "2.0",
+    "fuelType": "Gas",
+    "type": "Sedan",
+    "horsePower": 158,
+    "id": 2
+  },
+  {
+    "brand": "Tesla",
+    "model": "Model 3",
+    "year": 2021,
+    "color": "Red",
+    "price": 120000,
+    "kilometers": 15000,
+    "status": "Available",
+    "numberPlate": "TESLA3",
+    "numsOfDoors": 4,
+    "transmissionType": "Automatic",
+    "engine": "Electric",
+    "fuelType": "EV",
+    "type": "Sedan",
+    "horsePower": 283,
+    "id": 3
+  }
+]

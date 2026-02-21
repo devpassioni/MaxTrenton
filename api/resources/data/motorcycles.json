@@ -1,0 +1,44 @@
+[
+  {
+    "brand": "Yamaha",
+    "model": "MT-07",
+    "year": 2020,
+    "color": "Blue",
+    "price": 35000,
+    "kilometers": 10000,
+    "status": "Available",
+    "numberPlate": "MOTO1234",
+    "engineDisplacement": 689,
+    "bodyType": "Sport",
+    "horsePower": 74,
+    "id": 1
+  },
+  {
+    "brand": "Yamaha",
+    "model": "MT-07",
+    "year": 2020,
+    "color": "Blue",
+    "price": 35000,
+    "kilometers": 10000,
+    "status": "Available",
+    "numberPlate": "MOTO1244",
+    "engineDisplacement": 689,
+    "bodyType": "Sport",
+    "horsePower": 74,
+    "id": 2
+  },
+  {
+    "brand": "Yamaha",
+    "model": "MT-05",
+    "year": 2022,
+    "color": "Blue",
+    "price": 35000,
+    "kilometers": 10000,
+    "status": "Available",
+    "numberPlate": "MOT12354",
+    "engineDisplacement": 689,
+    "bodyType": "Sport",
+    "horsePower": 74,
+    "id": 3
+  }
+]
