@@ -4,7 +4,7 @@ import {SellerService} from  "../../../backend/src/service/sellerService"
 import {CarService} from "../../../backend/src/service/carService"
 import {MotorcycleService} from "../../../backend/src/service/motorcycleService"
 import {CustomerService} from "../../../backend/src/service/customerService"
-
+import { createDealDTO } from "./create-deal.dto"
 
 @Injectable()
 export class DealServiceAPI{
@@ -30,8 +30,18 @@ export class DealServiceAPI{
     }
 
 
-    async addDeal(){
-        return this.dealService.addDeal // <- Precisara de um DTO
+    async addDeal(dto: createDealDTO){
+        return this.dealService.addDeal(
+            dto.typeofVehicle,
+            dto.vehicleID,
+            dto.customerID,
+            dto.sellerID,
+            dto.downPayment,
+            dto.totalValue,
+            dto.offeredPrice,
+            dto.paymentMethod,
+            "Pending"
+        ) 
     }
 
 
